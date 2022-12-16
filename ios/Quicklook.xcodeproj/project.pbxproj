@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* Quicklook.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* Quicklook.m */; };
+		976F1126294B780800DD224B /* QuicklookViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 976F1125294B780800DD224B /* QuicklookViewManager.m */; };
+		976F1129294B7A5100DD224B /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976F1128294B7A5100DD224B /* QuickLook.framework */; };
+		976F112F294B7ACA00DD224B /* QLookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 976F112E294B7ACA00DD224B /* QLookView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,8 +26,10 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libQuicklook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libQuicklook.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* Quicklook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quicklook.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* Quicklook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quicklook.m; sourceTree = "<group>"; };
+		976F1125294B780800DD224B /* QuicklookViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuicklookViewManager.m; sourceTree = "<group>"; };
+		976F1128294B7A5100DD224B /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/System/iOSSupport/System/Library/Frameworks/QuickLook.framework; sourceTree = DEVELOPER_DIR; };
+		976F112D294B7ACA00DD224B /* QLookView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLookView.h; sourceTree = "<group>"; };
+		976F112E294B7ACA00DD224B /* QLookView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QLookView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				976F1129294B7A5100DD224B /* QuickLook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,10 +55,20 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				B3E7B5881CC2AC0600A0062D /* Quicklook.h */,
-				B3E7B5891CC2AC0600A0062D /* Quicklook.m */,
+				976F112D294B7ACA00DD224B /* QLookView.h */,
+				976F112E294B7ACA00DD224B /* QLookView.m */,
+				976F1125294B780800DD224B /* QuicklookViewManager.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				976F1127294B7A5100DD224B /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		976F1127294B7A5100DD224B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				976F1128294B7A5100DD224B /* QuickLook.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,7 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* Quicklook.m in Sources */,
+				976F1126294B780800DD224B /* QuicklookViewManager.m in Sources */,
+				976F112F294B7ACA00DD224B /* QLookView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
