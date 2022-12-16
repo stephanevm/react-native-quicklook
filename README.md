@@ -15,7 +15,7 @@ import Quicklook from 'react-native-quicklook';
 
 // ...
 
-Quicklook.open(path) //path to local file.
+Quicklook.open(path, { displayName: 'demo' }) //path to local file.
   .then(() => {
     // success
   })
