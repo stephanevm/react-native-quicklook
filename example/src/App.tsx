@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { QuicklookView } from 'react-native-quicklook';
+import Quicklook from 'react-native-quicklook';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 
 function Preview() {
@@ -10,11 +10,12 @@ function Preview() {
   useEffect(() => {
     ReactNativeBlobUtil.config({
       fileCache: true,
-      appendExt: 'zip',
+      appendExt: 'wav',
     })
       .fetch(
         'GET',
-        'http://212.183.159.230/10MB.zip',
+        'https://file-examples.com/storage/fe88dacf086398d1c98749c/2017/11/file_example_WAV_1MG.wav',
+        //'http://samples.leanpub.com/thereactnativebook-sample.pdf',
         //'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-large-zip-file.zip',
         // 'http://samples.leanpub.com/thereactnativebook-sample.pdf',
         {
@@ -29,7 +30,7 @@ function Preview() {
   }, []);
 
   if (fileUrl) {
-    return <QuicklookView fileUrl={fileUrl} style={styles.box} />;
+    Quicklook.open(fileUrl, {});
   }
 
   return <Text style={styles.box}>Loading...</Text>;

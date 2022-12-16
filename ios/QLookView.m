@@ -21,8 +21,6 @@
 - (void)setFileUrl:(NSString *)fileUrl{
     _fileUrl =fileUrl;
      [self handleUpdate];
-    self.backgroundColor = [UIColor redColor];
-
 }
 
 
@@ -39,7 +37,7 @@
     self.cview.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                                          UIViewAutoresizingFlexibleHeight );
     self.controller.automaticallyAdjustsScrollViewInsets = false;
-   [self addSubview:_cview];
+   //[self addSubview:_cview];
   return self  ;
 }
 
@@ -57,11 +55,16 @@
 }
 
 - (void) handleUpdate{
-    NSLog(@"Helo world");
     _fileCount = 0;
     if([_fileUrl length] > 0 &&  [NSFileManager.defaultManager fileExistsAtPath:_fileUrl]){
         _fileCount = 1;
+        
+        [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:self.controller animated:true completion:^{
+            
+        }];
     }
+    
+    
    [_controller refreshCurrentPreviewItem];
 }
 

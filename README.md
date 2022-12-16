@@ -11,11 +11,17 @@ npm install react-native-quicklook
 ## Usage
 
 ```js
-import { QuicklookView } from 'react-native-quicklook';
+import Quicklook from 'react-native-quicklook';
 
 // ...
 
-<QuicklookView fileUrl={fileUrl} style={styles.box} />;
+Quicklook.open(path) //path to local file.
+  .then(() => {
+    // success
+  })
+  .catch((error) => {
+    // error
+  });
 ```
 
 ## Contributing

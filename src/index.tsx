@@ -1,26 +1,45 @@
-import {
-  requireNativeComponent,
-  UIManager,
-  Platform,
-  ViewStyle,
-} from 'react-native';
+import { NativeModules, NativeEventEmitter } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-quicklook' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+const { QuickLookManager } = NativeModules;
+const eventEmitter = QuickLookManager
+  ? new NativeEventEmitter(QuickLookManager)
+  : null;
 
-type QuicklookProps = {
-  fileUrl: string;
-  style: ViewStyle;
-};
+let lastId = 0;
 
-const ComponentName = 'QuicklookView';
+function open(path: string, options = {}) {
+  if (!eventEmitter) {
+    return;
+  }
+  const _options =
+    typeof options === 'string' ? { displayName: options } : options;
+  const { onDismiss, ...nativeOptions } = _options as any;
 
-export const QuicklookView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<QuicklookProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+  return new Promise((resolve, reject) => {
+    const currentId = ++lastId;
+
+    const openSubscription = eventEmitter.addListener(
+      'QLViewerDidOpen',
+      ({ id, error }) => {
+        if (id === currentId) {
+          openSubscription.remove();
+          return error ? reject(new Error(error)) : resolve('');
+        }
+      }
+    );
+    const dismissSubscription = eventEmitter.addListener(
+      'QLViewerDidDismiss',
+      ({ id }) => {
+        if (id === currentId) {
+          dismissSubscription.remove();
+          onDismiss && onDismiss();
+        }
+      }
+    );
+
+    QuickLookManager.open(path, currentId, nativeOptions);
+  });
+}
+
+export default { open };
+export { open };
